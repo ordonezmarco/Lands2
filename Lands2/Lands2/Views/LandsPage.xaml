@@ -5,7 +5,9 @@
              BindingContext="{Binding Main, Source={StaticResource Locator}}"
              Title="Lands">
     <ContentPage.Content>
-        <StackLayout>
+        <StackLayout
+            BindingContext="{Binding Lands}"
+            Padding="5">
             <Label 
                 Text="Welcome to Lands Page!"
                 VerticalOptions="CenterAndExpand" 

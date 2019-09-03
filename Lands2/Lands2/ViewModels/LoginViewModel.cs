@@ -2,6 +2,7 @@
 {
     using System.Windows.Input;
     using GalaSoft.MvvmLight.Command;
+    using Lands2.Views;
     using Xamarin.Forms;
 
     public class LoginViewModel : BaseViewModel
@@ -99,11 +100,11 @@
             this.IsRunning = false;
             this.IsEnable = true;
 
-            await Application.Current.MainPage.DisplayAlert(
-                    "Ok",
-                    "Login Succesful.",
-                    "Accept");
+            this.Email = string.Empty;
+            this.Password = string.Empty;
 
+            MainViewModel.GetInstance().Lands = new LandsViewModel();
+            await Application.Current.MainPage.Navigation.PushAsync(new LandsPage());
         }
         public ICommand RegisterCommand
         {

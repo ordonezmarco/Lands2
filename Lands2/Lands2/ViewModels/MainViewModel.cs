@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Lands2.ViewModels
 {
-    class MainViewModel
+    public class MainViewModel
     {
         #region ViewModels
         public LoginViewModel Login

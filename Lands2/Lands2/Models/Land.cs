@@ -4,7 +4,7 @@ namespace Lands2.Models
     using System.Collections.Generic;
     using Newtonsoft.Json;
 
-    class Land
+    public class Land
     {
         [JsonProperty(PropertyName = "name")]
         public string Name
@@ -91,14 +91,14 @@ namespace Lands2.Models
         }
 
         [JsonProperty(PropertyName = "area")]
-        public double Area
+        public double? Area
         {
             get;
             set;
         }
 
         [JsonProperty(PropertyName = "gini")]
-        public double Gini
+        public double? Gini
         {
             get;
             set;

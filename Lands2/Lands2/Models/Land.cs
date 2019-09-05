@@ -161,17 +161,20 @@ namespace Lands2.Models
         }
 
         [JsonProperty(PropertyName = "regionalBlocs")]
-        public List<RegionalBloc> regionalBlocs
+        public List<RegionalBloc> RegionalBlocs
         {
             get;
             set;
         }
 
         [JsonProperty(PropertyName = "cioc")]
-        public string cioc
+        public string Cioc
         {
             get;
             set;
         }
+
+
+
     }
 }

@@ -48,6 +48,8 @@
         {
             this.IsRemembered = true;
             this.isEnable = true;
+            this.Email = "ordonez.marcos21@gmail.com";
+            this.Password = "123456";
         }
         #endregion
 

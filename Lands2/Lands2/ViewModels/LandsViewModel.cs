@@ -14,23 +14,19 @@ namespace Lands2.ViewModels
 
     public class LandsViewModel : BaseViewModel
     {
-        //"http://restcountries.eu/rest/v2/all"
-
-        //"http://restcountries.eu","/rest/v2/all"
-
         #region Services
         private ApiService apiService;
         #endregion
 
         #region Attributes
-        private ObservableCollection<Land> lands;
+        private ObservableCollection<LandItemViewModel> lands;
         private bool isRefreshing;
         private string filter;
         private List<Land> landList;
         #endregion
 
         #region Properties
-        public ObservableCollection<Land> Lands
+        public ObservableCollection<LandItemViewModel> Lands
         {
             get { return this.lands; }
             set { SetValue(ref this.lands, value); }
@@ -85,23 +81,59 @@ namespace Lands2.ViewModels
             //var list =  (List<Land>)response.Result;
             this.landList = (List<Land>)response.Result;
             //this.Lands = new ObservableCollection<Land>(list);
-            this.Lands = new ObservableCollection<Land>(this.landList);
+            this.Lands = new ObservableCollection<LandItemViewModel>(
+                this.ToLandItemViewModel());
             this.IsRefreshing = false;
-        }
+        }     
+
         private void Search()
         {
             if(string.IsNullOrEmpty(this.Filter))
             {
-                this.Lands = new ObservableCollection<Land>(this.landList);
+                this.Lands = new ObservableCollection<LandItemViewModel>(
+                    this.ToLandItemViewModel());
             }
             else
             {
-                this.Lands = new ObservableCollection<Land>(
-                    this.landList.Where(
+                this.Lands = new ObservableCollection<LandItemViewModel>(
+                    this.ToLandItemViewModel().Where(
                         l => l.Name.ToLower().Contains(this.Filter.ToLower()) ||
                              l.Capital.ToLower().Contains(this.Filter.ToLower())
-                        ));
+                    ));
             }
+        }
+
+        private IEnumerable<LandItemViewModel> ToLandItemViewModel()
+        {
+            return this.landList.Select(
+                l => new LandItemViewModel
+                    {
+                        Name = l.Name,                          
+                        TopLevelDomain = l.TopLevelDomain,
+                        Alpha2Code = l.Alpha2Code,
+                        Alpha3Code = l.Alpha3Code,
+                        CallingCodes = l.CallingCodes,
+                        Capital = l.Capital,
+                        AltSpellings = l.AltSpellings,
+                        Region = l.Region,
+                        Subregion = l.Subregion,
+                        Population = l.Population,
+                        Latlng = l.Latlng,
+                        Demonym = l.Demonym,
+                        Area = l.Area,
+                        Gini = l.Gini,
+                        Timezones = l.Timezones,
+                        Borders = l.Borders,
+                        NativeName = l.NativeName,
+                        NumericCode = l.NumericCode,
+                        Currencies = l.Currencies,
+                        Languages = l.Languages,
+                        Translations = l.Translations,
+                        Flag = l.Flag,
+                        RegionalBlocs = l.RegionalBlocs,
+                        Cioc = l.Cioc,
+                    }
+                );
         }
         #endregion
 

@@ -22,7 +22,7 @@ namespace Lands2.ViewModels
         private ObservableCollection<LandItemViewModel> lands;
         private bool isRefreshing;
         private string filter;
-        private List<Land> landList;
+        //private List<Land> landList;
         #endregion
 
         #region Properties
@@ -79,7 +79,8 @@ namespace Lands2.ViewModels
             }
 
             //var list =  (List<Land>)response.Result;
-            this.landList = (List<Land>)response.Result;
+            //this.landList = (List<Land>)response.Result;
+            MainViewModel.GetInstance().LandList = (List<Land>)response.Result;
             //this.Lands = new ObservableCollection<Land>(list);
             this.Lands = new ObservableCollection<LandItemViewModel>(
                 this.ToLandItemViewModel());
@@ -105,7 +106,8 @@ namespace Lands2.ViewModels
 
         private IEnumerable<LandItemViewModel> ToLandItemViewModel()
         {
-            return this.landList.Select(
+            //return this.landList.Select(
+            return MainViewModel.GetInstance().LandList.Select(
                 l => new LandItemViewModel
                     {
                         Name = l.Name,                          
